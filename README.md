@@ -99,6 +99,8 @@ SuperStore, a global retail company, needs to segment its large and growing cust
 
 - Clean dataset
 
+- Inspect & valid dataset
+
 3️⃣ **Data processing:** Segment customers from RFM score
 
 4️⃣ **Data visualization & Analysis** 
