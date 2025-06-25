@@ -22,23 +22,23 @@ Use Python for Customer Segmentation
 ### 📖 What is this project about? What Business Question will it solve?
 This project uses Python to analyze SuperStore’s large-scale customer transaction data to:
 
-✔️ Segment customers using the RFM model to identify groups like loyal, inactive, and high-value customers.
+✔️ Segment customers using the RFM model to identify groups like loyal, inactive, and high-value customers
 
-✔️ Automate segmentation to handle large datasets, replacing manual Excel methods.
+✔️ Automate segmentation to handle large datasets, replacing manual Excel methods
 
-✔️ Deliver insights to help Marketing & Sales run targeted, effective holiday campaigns.
+✔️ Deliver insights to help Marketing & Sales run targeted, effective holiday campaigns
  
 
 
 ### 👤 Who is this project for?  
 
-✔️ Marketing Teams – to identify and target customer segments with personalized holiday campaigns.
+✔️ Marketing Teams – to identify and target customer segments with personalized holiday campaigns
 
-✔️ Sales Teams – to focus efforts on high-value and frequent buyers for upselling and retention.
+✔️ Sales Teams – to focus efforts on high-value and frequent buyers for upselling and retention
 
-✔️ Data Analytics Teams – to automate and scale customer segmentation using Python.
+✔️ Data Analytics Teams – to automate and scale customer segmentation using Python
 
-✔️ Business Leaders – to make data-driven decisions that boost customer lifetime value and revenue.
+✔️ Business Leaders – to make data-driven decisions that boost customer lifetime value and revenue
 
 
 
@@ -95,7 +95,7 @@ SuperStore, a global retail company, needs to segment its large and growing cust
 
 2️⃣ **Exploratory Data Analysis (EDA):** 
 
-- Understand dataset
+- Understand dataset 
 
 - Clean dataset
 
