@@ -341,7 +341,7 @@ Frequent Low-Value Buyers: A segment with high Frequency (F=4) but low Monetary 
 - Resource Optimization: Reduce broad marketing spend on Lost Customers; use selective A/B testing for re-engagement or delist.
 
 
-**(2)Suggestions for Marketing and Sales team with the retail model of Superstore company, which of the 3 indexes R, F, M should be most concerned about?**
+**(2) Suggestions for Marketing and Sales team with the retail model of Superstore company, which of the 3 indexes R, F, M should be most concerned about?**
 
 ***Marketing Team***
 
