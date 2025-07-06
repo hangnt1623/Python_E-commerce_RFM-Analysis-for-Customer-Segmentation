@@ -153,12 +153,9 @@ Checking data types identifies data's nature and initial quality issues, while c
 - Change datatype of "InvoiceID" & "StockCode" & "CustomerID" to STRING because InvoiceID usually includes numbers & letters
 - "Description", "Country" -> description / country name -> change datatype of these 2 columns to STRING
 
-*Before
+*Before & After*
 
 <img width="163" alt="{0CFCB0C3-A158-4523-941B-02580D70A53E}" src="https://github.com/user-attachments/assets/541113a9-b9ca-4d03-ae8b-e6bdc8df1d15" />
-
-*After 
-
 <img width="160" alt="{7414B09B-650A-4AA0-9C7B-663D335BAF30}" src="https://github.com/user-attachments/assets/86910594-b746-4fe1-becf-a880a1cab78d" />
 
 ***(2) Missing Value***
@@ -169,12 +166,9 @@ Checking missing values helps identify data quality issues and incompleteness. H
 - Remove lines without Description information because Unit Price = 0 and no Customer ID information
 - Remove lines without CustomerID information because it will not be possible to identify the customer segment
 
-*Before
+*Before & After*
 
 <img width="129" alt="{E86A6975-448B-4685-8C86-443125EA59FF}" src="https://github.com/user-attachments/assets/5e82199c-9c3f-43a9-bd75-0f0c02c3d11d" />
-
-*After
-
 <img width="99" alt="{7D4F5A14-D448-4E0D-8B8C-468E36A7AD4E}" src="https://github.com/user-attachments/assets/f2fd9ae8-4a15-4af8-8f54-35043917ef6d" />
 
 
