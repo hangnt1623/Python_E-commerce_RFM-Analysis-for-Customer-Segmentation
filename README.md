@@ -320,11 +320,28 @@ It helps assess the **shape of the customer base** - e.g., how active, how loyal
 
 ***Distributions (for outliers -> high spending)***
 
+|  | Recency | Frequency | Monetary | F_score | M_score | RFM_Score |
+| --- | --- | --- | --- | --- | --- | --- |
+| count | 104.000.000 | 104.000.000 | 104.000.000 | 104.000.000 | 104.0 | 104.000.000 |
+| mean | 39.528.846 | 30.596.154 | 35.097.018.942 | 3.807.692 | 5.0 | 492.115.385 |
+| std | 44.219.654 | 33.106.336 | 46.617.847.042 | 608.626 | 0.0 | 98.006.073 |
+| min | 21.000.000 | 1.000.000 | 10.196.570.000 | 1.000.000 | 5.0 | 115.000.000 |
+| 25% | 22.750.000 | 12.000.000 | 12.334.922.500 | 4.000.000 | 5.0 | 445.000.000 |
+| 50% | 25.500.000 | 22.000.000 | 17.189.940.000 | 4.000.000 | 5.0 | 545.000.000 |
+| 75% | 36.250.000 | 33.250.000 | 35.295.950.000 | 4.000.000 | 5.0 | 545.000.000 |
+| max | 346.000.000 | 209.000.000 | 280.206.020.000 | 4.000.000 | 5.0 | 545.000.000 |
+
+
 ![image](https://github.com/user-attachments/assets/c238e6d7-22ee-4089-ba8c-73807abe7945)
 
 ***Compare outliers vs total RFM average***
 
-<img width="244" alt="{E8DED7DD-310C-4D61-974C-C4EED177D915}" src="https://github.com/user-attachments/assets/9d0d99d4-661a-452a-80ca-46a33e802b04" />
+|  | All_Customers | Outliers_Only |
+| --- | --- | --- |
+| Recency | 113.1 | 39.5 |
+| Frequency | 4.3 | 30.6 |
+| Monetary | 2048.7 | 35097.0 |
+
 
 *Observations*
 
@@ -350,7 +367,20 @@ It helps assess the **shape of the customer base** - e.g., how active, how loyal
 
 ***Total numbers of customers & revenue by segment***
 
-<img width="440" alt="{2179BD22-7200-4FB0-A2CE-0EC09FAB2010}" src="https://github.com/user-attachments/assets/6ea52092-120a-4575-a5fb-f1133e4e795e" />
+| Segment | Num_Customers | Total_Revenue | %_Customers | %_Revenue |
+| --- | --- | --- | --- | --- |
+| Champions | 534 | 4.877.732.290 | 12.31 | 54.88 |
+| Loyal | 236 | 884.850.540 | 5.44 | 9.96 |
+| Need Attention | 422 | 732.141.920 | 9.73 | 8.24 |
+| Promising | 485 | 697.531.710 | 11.18 | 7.85 |
+| At Risk | 240 | 574.017.240 | 5.53 | 6.46 |
+| Cannot Lose Them | 228 | 354.187.691 | 5.26 | 3.99 |
+| Potential Loyalist | 245 | 171.490.251 | 5.65 | 1.93 |
+| Hibernating customers | 491 | 169.985.642 | 11.32 | 1.91 |
+| About To Sleep | 328 | 161.623.840 | 7.56 | 1.82 |
+| Lost customers | 620 | 143.382.810 | 14.29 | 1.61 |
+| New Customers | 509 | 120.264.960 | 11.73 | 1.35 |
+
 
 ![image](https://github.com/user-attachments/assets/02d7e8dd-6eb9-4545-9543-10cd51272d3a)
 
