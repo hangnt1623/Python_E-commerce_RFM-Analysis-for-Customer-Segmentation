@@ -20,30 +20,51 @@ Use Python for Customer Segmentation
 
 ### Objective:
 ### 📖 What is this project about? What Business Question will it solve?
-This project uses Python to analyze SuperStore’s large-scale customer transaction data to:
 
-✔️ Segment customers using the RFM model to identify groups like loyal, inactive, and high-value customers
+**SuperStore**, a global retail company, needs to **segment its large and growing customer base** to run **effective, personalized marketing campaigns** during the **Christmas and New Year holidays**. Due to the **scale of customer data**, traditional manual segmentation (e.g., Excel) is no longer practical. The **Marketing department** requests an **automated solution using Python** to implement the **RFM (Recency, Frequency, Monetary)** model for **scalable, accurate customer segmentation**.
 
-✔️ Automate segmentation to handle large datasets, replacing manual Excel methods
 
-✔️ Deliver insights to help Marketing & Sales run targeted, effective holiday campaigns
+This project uses **Python** to analyze **SuperStore’s large-scale customer transaction data** to:
+
+✔️ **Segment customers using the RFM model** to identify groups like loyal, inactive, and high-value customers
+
+✔️ **Automate segmentation** to handle large datasets, replacing manual Excel methods
+
+✔️ **Deliver insights** to help **Marketing & Sales** run **targeted, effective holiday campaigns**
+
  
-
 
 ### 👤 Who is this project for?  
 
-✔️ Marketing Teams – to identify and target customer segments with personalized holiday campaigns
+✔️ **Marketing Teams** – to identify and target customer segments with **personalized holiday campaigns**
 
-✔️ Sales Teams – to focus efforts on high-value and frequent buyers for upselling and retention
+✔️ **Sales Teams** – to focus efforts on **high-value and frequent buyers** for **upselling and retention**
 
-✔️ Data Analytics Teams – to automate and scale customer segmentation using Python
+✔️ **Data Analytics Teams** – to **automate and scale customer segmentation** using **Python**
 
-✔️ Business Leaders – to make data-driven decisions that boost customer lifetime value and revenue
-
-
+✔️ **Business Leaders** – to make **data-driven decisions** that boost **customer lifetime value** and **revenue**
 
 
+### RFM Analysis Overview
+#### 🔹 What is RFM?
 
+RFM stands for:
+
+| Metric    | Description                                  |
+|-----------|----------------------------------------------|
+| Recency   | How recently a customer made a purchase      |
+| Frequency | How often the customer purchases             |
+| Monetary  | How much money the customer has spent        |
+
+🔗 *Customers with high scores across all three dimensions are considered **the most valuable***.
+
+#### 🧠 Why Use RFM?
+
+- Behavior-based segmentation (data-driven)
+- Easy to implement and scale
+- Improves marketing ROI by targeting the right segments
+- Prioritizes customer retention and engagement efforts
+  
 ---
 
 ## 📂 Dataset Description & Data Structure  
@@ -58,11 +79,11 @@ This project uses Python to analyze SuperStore’s large-scale customer transact
 #### 1️⃣ Tables Used:  
 There is a table in the dataset called 'ecommerce_retail'. 
 
-#### 2️⃣ Table Schema & Data Snapshot  
+#### 2️⃣ Table Schema 
 
 **Table: ecommerce_retail**
-
-*Table schema*
+<details>
+  <summary>📊 <strong>Table schema</strong></summary>
 
 | Column Name | Data Type | Description |  
 |-------------|----------|-------------|  
@@ -74,28 +95,18 @@ There is a table in the dataset called 'ecommerce_retail'.
 | UnitPrice    | float64   | Unit price |  
 | CustomerID    | float64    | Customer number |  
 | Country    | object   | Country name |  
-
-*Data snapshot*
-
-<img width="758" alt="{4BD60805-AC96-4709-ACB1-976B55F6B92D}" src="https://github.com/user-attachments/assets/8d796929-f5b2-4e3f-9ead-396bb2007bde" />
-
-
-
+</details>
 
 
 ## ⚒️ Main Process
 
-1️⃣ **Define problem, metric & Data gathering**
-
-**Define problem, metric**
-
-SuperStore, a global retail company, needs to segment its large and growing customer base to run effective, personalized marketing campaigns during the Christmas and New Year holidays. Due to the scale of customer data, traditional manual segmentation (Excel) is no longer practical. The Marketing department requests an automated solution using Python to implement the RFM (Recency, Frequency, Monetary) model for scalable, accurate customer segmentation.
-
-**Data gathering**: Import datasets & libraries
+1️⃣ **Data gathering**: Import datasets & libraries
 
 2️⃣ **Exploratory Data Analysis (EDA):** 
 
-**Step 1: Understand dataset**
+<details>
+  <summary>🧩 <strong>Step 1: Understand dataset</strong></summary>
+****
 
 (1) Use "df.shape"  to immediately know the number of transactions (rows) and types of information (columns) you're dealing with.
 ```python
@@ -122,10 +133,12 @@ ecommerce_retail.head(10)
 ```python
 ecommerce_retail.describe()
 ```
+</details>
 
 
-
-**Step 2: Inspect & valid dataset**
+<details>
+  <summary>🧩 <strong>Step 2: Inspect & valid dataset</strong></summary>
+****
 
 - First of all, use ProfileReport to  generate automated Exploratory Data Analysis (EDA) reports for ecommerce_retail, this provide a quick overview of data quality, missing values, and variable distribution, helping you understand your ecommerce_retail data immediately
 ```python
@@ -205,20 +218,101 @@ In this case, use logarithm is to make highly skewed data distributions more sym
 <img width="487" alt="{A115DE8D-1F29-483A-B540-CA85ED359F48}" src="https://github.com/user-attachments/assets/ae737372-b36f-45d0-9f44-fd1c74dcd27a" />
 
 -> Both Quantity and TotalPrice are strongly skewed towards small values. The logarithmic plot shows that Quantity has specific common purchase levels, while TotalPrice after the logarithm transformation becomes more concentrated and symmetrical, indicating that the majority of transactions have total values ​​within a certain range.
+</details>
 
 
 
 3️⃣ **Data processing:** 
 
-Calculate RFM (Recency, Frequency, Monetary) scores and combine them into an aggregate RFM score to segment customers.
+<details>
+  <summary>🧩 <strong>Step 1: Prepare the data</strong></summary>
 
+ - Calculate TotalPrice for each transaction by multiplying quantity × unit price.
+- Set a reference date (Dec 31, 2011) to measure recency from.
+</details>
+
+
+<details>
+  <summary>🧩 <strong>Step 2: Calculate R, F, M values per customer</strong></summary>
+#### 
+- Recency: Days since the customer’s last purchase (difference between reference date and last purchase date).
+- Frequency: Count of unique purchase invoices (how often the customer bought).
+- Monetary: Total money spent by the customer.
+</details>
+
+<details>
+  <summary>🧩 <strong>Step 3: Convert R, F, M values to scores (1 to 5)</strong></summary>
+- For Recency, lower days mean higher score (5 = most recent buyers).
+- For Frequency and Monetary, higher values get higher scores (5 = most frequent/spending customers).
+
+-> This is done by splitting customers into 5 groups (quintiles) based on each metric.
+</details>
+
+<details>
+  <summary>🧩 <strong>Step 4: Combine the scores into a 3-digit RFM Score</strong></summary>
+
+ -> Concatenate the R, F, and M scores into a single string, e.g., "545".
+</details>
+
+<details>
+  <summary>🧩 <strong>Step 5: Segment customers by matching their RFM Score to predefined groups</strong></summary>
+
+ - Use the mapping table of RFM Score patterns (like "555", "544", etc.) to assign customers into segments such as Champions, Loyal, At Risk, Lost, etc.
+- This allows tailoring marketing strategies to each customer group.
+
+<details>
+  <summary>🧩 <strong>Click here to see RFM Segments</strong></summary>
+
+| Segment               | RFM Score Patterns |
+|-----------------------|-------------------|
+| **Champions**         | 555, 554, 544, 545, 454, 455, 445 |
+| **Loyal**             | 543, 444, 435, 355, 354, 345, 344, 335 |
+| **Potential Loyalist**| 553, 551, 552, 541, 542, 533, 532, 531, 452, 451, 442, 441, 431, 453, 433, 432, 423, 353, 352, 351, 342, 341, 333, 323 |
+| **New Customers**     | 512, 511, 422, 421, 412, 411, 311 |
+| **Promising**         | 525, 524, 523, 522, 521, 515, 514, 513, 425, 424, 413, 414, 415, 315, 314, 313 |
+| **Need Attention**    | 535, 534, 443, 434, 343, 334, 325, 324 |
+| **About To Sleep**    | 331, 321, 312, 221, 213, 231, 241, 251 |
+| **At Risk**           | 255, 254, 245, 244, 253, 252, 243, 242, 235, 234, 225, 224, 153, 152, 145, 143, 142, 135, 134, 133, 125, 124 |
+| **Cannot Lose Them**  | 155, 154, 144, 214, 215, 115, 114, 113 |
+| **Hibernating**       | 332, 322, 233, 232, 223, 222, 132, 123, 122, 212, 211 |
+| **Lost**              | 111, 112, 121, 131, 141, 151 |
+
+> Use RFM segmentation to tailor marketing strategies, target reactivation campaigns, and maximize lifetime value.
+</details>
+</details>
 
 4️⃣ **Data visualization & Analysis** 
 
-**(1) Distribution of Recency, Frequency, Monetary**
+<details>
+  <summary> 🧩 <strong>(1) Relationship between indicators: R, F, M</strong></summary>
+ 
+While the main analysis uses **RFM model** to segment customers for strategic actions,  this section dives deeper into the **interplay between Recency, Frequency, and Monetary**.  It helps uncover **specific customer behaviors** inside and across segments,  revealing *hidden value, churn risk, and growth potential*.
 
-→ Understand the overview of customer behavior in each dimension: recent, frequent, monetary
+![image](https://github.com/user-attachments/assets/bd683818-74db-4d78-9356-cbbbf60d4e15)
 
+![image](https://github.com/user-attachments/assets/9e7ffde6-5730-463d-a7e4-b2fdcdb1dc49)
+
+*Observations:*
+
+- Emerging High-Value Customers: A significant group (R=5, F=3-4, M=4-5) are recent, moderately frequent, and high-spending – a promising core for future Champions.
+- High-Value Churn Risk: Customers with low Recency (R=1) but high past Monetary (M=4-5) are valuable but at high risk of churn.
+Frequent Low-Value Buyers: A segment with high Frequency (F=4) but low Monetary (M=1-2) indicates loyal but low-spending customers.
+- Newly Re-engaged, Low Value: Customers with high Recency (R=5) but low Frequency/Monetary (F=1, M=1) are recently reactivated but not yet valuable.
+
+*Recommendations*
+
+- Nurture Emerging VIPs: Offer early VIP benefits, exclusive experiences, and tailored loyalty programs to develop the R5F3-4M4-5 group.
+- Win Back High-Value Churners: Deploy personalized re-engagement emails and exclusive "welcome back" vouchers for R1M4-5 customers.
+- Increase ARPU for Loyal Low-Spenders: Promote product bundles, tiered discounts, and value-added services (e.g., free shipping thresholds) for F4M1-2 customers.
+- Convert New Re-engagers: Offer incentives for a second purchase and provide a superior onboarding experience for R5F1M1 customers.
+</details>
+
+<details>
+  <summary>🧩  <strong>(2) Distribution of Recency, Frequency, Monetary</strong></summary>
+
+To support segmentation logic, this section visualizes the **distribution of Recency, Frequency, and Monetary** across all customers.  
+It helps assess the **shape of the customer base** - e.g., how active, how loyal, how valuable they are - and informs whether the segmentation is well-balanced or skewed.
+ 
 ***Distribution (remove outliers)***
 
 ![image](https://github.com/user-attachments/assets/fd742b3c-62d3-408d-8c83-61022952a79e)
@@ -246,11 +340,12 @@ Calculate RFM (Recency, Frequency, Monetary) scores and combine them into an agg
 - Implement retargeting for inactive/low-frequency customers
 - Develop a "VIP" program for high-spenders
 - Utilize customer segmentation for personalized marketing strategies
+</details>
 
 
-
-**(2) Customer segment structure**
-
+<details>
+  <summary>🧩 <strong>(3) Customer segment structure</strong></summary>
+****
 → Analyze the size of each customer group to understand dominant segments and prioritize strategies.
 
 ***Total numbers of customers & revenue by segment***
@@ -274,51 +369,7 @@ Calculate RFM (Recency, Frequency, Monetary) scores and combine them into an agg
 - Nurture & Convert: Develop robust onboarding and personalized engagement for New and Promising customers to foster loyalty.
 - Re-engage Proactively: Launch targeted, personalized reactivation campaigns for At-Risk and Cannot Lose Them segments to prevent churn.
 - Optimize Spend: Reduce broad marketing efforts on Lost Customers, focusing instead on highly selective re-engagement or reallocating resources to higher-potential segments.
-
-
-**(3) Group Value Analysis**
-
-→ Understand each customer segment according to the value it brings
-
-<img width="544" alt="{39F271BC-DFD2-4B3E-94F6-AF7DCBC631A0}" src="https://github.com/user-attachments/assets/8ec85f68-f54e-4ea6-905f-d3f53bbb26f5" />
-
-*Observations*
-
-- Core Value Drivers: Champions (12% of customers) generate over half (55%) of all revenue with high average spend and frequency. Loyal customers also contribute significantly, showing strong engagement.
-- High-Risk, High-Value: Segments like At Risk and Cannot Lose Them still hold substantial revenue, but are showing clear signs of declining engagement (e.g., high Recency for "Cannot Lose Them"), posing a significant threat of loss.
-- Growth Potential: New, Promising, and Potential Loyalist customers are a large group with good Recency but low current frequency and spend, representing future growth opportunities.
-- Dormant Segments: Hibernating, About To Sleep, and Need Attention customers are increasingly inactive, with some (Need Attention) having decent past spend, indicating a need for urgent reactivation.
-- Lost Group: Lost Customers form a large segment with minimal current value or engagement.
-
-*Recommendations*
-
-- Prioritize Core: Implement VIP programs & personalized care for Champions & Loyal.
-- Proactive Re-engagement: Use targeted campaigns for At-Risk and Cannot Lose Them.
-- Nurture Growth: Establish onboarding & personalized engagement for New/Potential customers.
-- Reactivate Dormant: Employ flash sales & targeted outreach for Hibernating/About To Sleep.
-- Optimize Spend: Reduce broad marketing for Lost Customers, focus on selective re-marketing.
-
-**(4) Relationship between indicators: R, F, M** 
-
-→ Understand customer purchasing behavior and identify potential or unusual customer groups for tailored strategies
-
-![image](https://github.com/user-attachments/assets/bd683818-74db-4d78-9356-cbbbf60d4e15)
-
-![image](https://github.com/user-attachments/assets/9e7ffde6-5730-463d-a7e4-b2fdcdb1dc49)
-
-*Observations:*
-
-- Emerging High-Value Customers: A significant group (R=5, F=3-4, M=4-5) are recent, moderately frequent, and high-spending – a promising core for future Champions.
-- High-Value Churn Risk: Customers with low Recency (R=1) but high past Monetary (M=4-5) are valuable but at high risk of churn.
-Frequent Low-Value Buyers: A segment with high Frequency (F=4) but low Monetary (M=1-2) indicates loyal but low-spending customers.
-- Newly Re-engaged, Low Value: Customers with high Recency (R=5) but low Frequency/Monetary (F=1, M=1) are recently reactivated but not yet valuable.
-
-*Recommendations*
-
-- Nurture Emerging VIPs: Offer early VIP benefits, exclusive experiences, and tailored loyalty programs to develop the R5F3-4M4-5 group.
-- Win Back High-Value Churners: Deploy personalized re-engagement emails and exclusive "welcome back" vouchers for R1M4-5 customers.
-- Increase ARPU for Loyal Low-Spenders: Promote product bundles, tiered discounts, and value-added services (e.g., free shipping thresholds) for F4M1-2 customers.
-- Convert New Re-engagers: Offer incentives for a second purchase and provide a superior onboarding experience for R5F1M1 customers.
+</details>
 
 
 5️⃣ **Insights & Recommendations**
@@ -327,38 +378,39 @@ Frequent Low-Value Buyers: A segment with high Frequency (F=4) but low Monetary 
 
 ***SuperStore Status***
 
-- Heavy Reliance on Champions: Over 50% revenue comes from ~12% loyal customers, posing a high risk if this group churns.
-- Low Repeat Purchases: Most customers are one-time or low-frequency buyers, indicating a need to boost engagement and average revenue per user (ARPU).
-- At-Risk High-Value Customers: A segment of high-spending customers is showing signs of disengagement, threatening significant revenue loss.
-- Untapped Potential: New and promising customers exist but haven't been effectively converted into loyal, high-value buyers.
-- Dormant/Lost Segments: A large portion of customers are inactive or lost, currently offering minimal value.
+- **Heavy Reliance on Champions**: Over 50% revenue comes from ~12% loyal customers, posing a high risk if this group churns.  
+- **Low Repeat Purchases**: Most customers are one-time or low-frequency buyers, indicating a need to boost engagement and average revenue per user (ARPU).  
+- **At-Risk High-Value Customers**: A segment of high-spending customers is showing signs of disengagement, threatening significant revenue loss.  
+- **Untapped Potential**: New and promising customers exist but haven't been effectively converted into loyal, high-value buyers.  
+- **Dormant/Lost Segments**: A large portion of customers are inactive or lost, currently offering minimal value.  
+
 
 ***Suggestions for Marketing team***
 
-- Retention Focus: Implement VIP programs for Champions/Loyal and personalized re-engagement for At-Risk/Cannot Lose Them customers.
-- Nurturing Strategy: Develop targeted onboarding and repeat-purchase campaigns for New and Promising customers.
-- Reactivation Campaigns: Launch flash sales and emotional messaging to re-engage Hibernating/About to Sleep customers.
-- Resource Optimization: Reduce broad marketing spend on Lost Customers; use selective A/B testing for re-engagement or delist.
+- **Retention Focus:** Implement VIP programs for Champions/Loyal and personalized re-engagement for At-Risk/Cannot Lose Them customers.  
+- **Nurturing Strategy:** Develop targeted onboarding and repeat-purchase campaigns for New and Promising customers.  
+- **Reactivation Campaigns:** Launch flash sales and emotional messaging to re-engage Hibernating/About to Sleep customers.  
+- **Resource Optimization:** Reduce broad marketing spend on Lost Customers; use selective A/B testing for re-engagement or delist.  
 
 
 **(2) Suggestions for Marketing and Sales team with the retail model of Superstore company, which of the 3 indexes R, F, M should be most concerned about?**
 
 ***Marketing Team***
 
-- Prioritize: Recency (R)
-- Reasons
-   + Customer "Hotness": R indicates recent activity; recent buyers are more receptive to marketing
-   + Conversion & Efficiency: Higher conversion rates for retargeting, optimizing ad spend (avoids "cold" customers)
+- **Prioritize:** Recency (R)  
+- **Reasons**  
+   + Customer "Hotness": R indicates recent activity; recent buyers are more receptive to marketing  
+   + Conversion & Efficiency: Higher conversion rates for retargeting, optimizing ad spend (avoids "cold" customers)  
    + Lifecycle Segmentation: Essential for tailoring messages across customer journey stages (e.g., active, warm, cold, lost).
      
 ***Sales Team***
 
-- Prioritize: Frequency (F)
-- Reasons
-  + True Engagement: F reflects actual loyalty and trust (repeat purchases)
-  + Lower Selling Costs: Frequent buyers are easier to upsell/cross-sell; they require less effort to close deals
-  + Sustainable Revenue: F identifies reliable, long-term revenue sources
-  + Upsell/Cross-sell Opportunities: Consistent purchase habits create clear paths for higher-value sales
+- **Prioritize:** Frequency (F)  
+- **Reasons**  
+  + **True Engagement:** F reflects actual loyalty and trust (repeat purchases)  
+  + **Lower Selling Costs:** Frequent buyers are easier to upsell/cross-sell; they require less effort to close deals  
+  + **Sustainable Revenue:** F identifies reliable, long-term revenue sources  
+  + **Upsell/Cross-sell Opportunities:** Consistent purchase habits create clear paths for higher-value sales  
   
 
 ## 🔎 Final Conclusion & Recommendations  
