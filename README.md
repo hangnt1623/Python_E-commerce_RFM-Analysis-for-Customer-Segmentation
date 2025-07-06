@@ -1,4 +1,4 @@
-# Python_E-commerce_RFM-Analysis-for-Customer-Segmentation
+# RFM Analysis for Customer Segmentation in E-commerce using Python
 Use Python for Customer Segmentation
 
 ![KPMG Transaction Analysis](https://github.com/Dorothy-Ho-Vy/Sample_SQL_Python_template/blob/4dee6ff56077b90b1aea82e8517136f7185a77a3/Blue%20White%20Modern%20Payment%20Gateway%20Service%20Twitter%20Post.png.crdownload)
