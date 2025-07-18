@@ -1,11 +1,10 @@
 # RFM Analysis for Customer Segmentation in E-commerce using Python
-Use Python for Customer Segmentation
 
 ![KPMG Transaction Analysis](https://github.com/Dorothy-Ho-Vy/Sample_SQL_Python_template/blob/4dee6ff56077b90b1aea82e8517136f7185a77a3/Blue%20White%20Modern%20Payment%20Gateway%20Service%20Twitter%20Post.png.crdownload)
 
-- Author: Nguyen Thuy Hang  
-- Date: 2025-06-22
-- Tools Used: Python  
+- **Author**: Nguyen Thuy Hang  
+- **Date**: 2025-06-22
+- **Tools Used**: Python  
 
 ---
 
@@ -21,7 +20,7 @@ Use Python for Customer Segmentation
 ### Objective:
 ### 📖 What is this project about? What Business Question will it solve?
 
-**SuperStore**, a global retail company, needs to **segment its large and growing customer base** to run **effective, personalized marketing campaigns** during the **Christmas and New Year holidays**. Due to the **scale of customer data**, traditional manual segmentation (e.g., Excel) is no longer practical. The **Marketing department** requests an **automated solution using Python** to implement the **RFM (Recency, Frequency, Monetary)** model for **scalable, accurate customer segmentation**.
+SuperStore, a global retail company, needs to segment its large and growing customer base to run effective, personalized **marketing campaigns** during the Christmas and New Year holidays. Due to the scale of customer data, traditional manual segmentation (e.g., Excel) is no longer practical. The Marketing department requests an **automated solution using Python** to implement the **RFM (Recency, Frequency, Monetary)** model for **scalable, accurate customer segmentation**.
 
 
 This project uses **Python** to analyze **SuperStore’s large-scale customer transaction data** to:
@@ -324,21 +323,22 @@ While the main analysis uses **RFM model** to segment customers for strategic ac
 
 ![image](https://github.com/user-attachments/assets/9e7ffde6-5730-463d-a7e4-b2fdcdb1dc49)
 
-*Observations:*
+📍***Observations:***
 
-- From Correlation Matrix:
-  + Frequency (F) and Monetary (M) have a strong positive correlation (0.55). This is the most crucial finding: higher frequency directly leads to higher spending. Prioritize strategies to increase purchase frequency.
-  + Recency (R) and Frequency (F) show a moderate negative correlation (-0.26). Recent buyers tend to be more frequent. This aligns with RFM logic.
-- From Heatmaps of R, F, M Scores:
- + F_score vs M_score (Right Heatmap) is key. This heatmap visually confirms the strong F-M relationship: high concentration of customers with both high F and high M scores (e.g., F=5, M=5). These are your "Champions" – prioritize retention and growth strategies for them.
- + R_score vs F_score (Left Heatmap):
-   ++ Significant clusters of high R, low F customers (e.g., R=5, F=1) indicate "New Customers" or "One-Time Buyers" needing nurturing to become frequent.
-   ++ Clusters of low R, high F customers (e.g., R=1, F=5) represent "Lapsed Loyalists" who need re-engagement.
+- **From Correlation Matrix:**
+  + *Frequency (F) and Monetary (M) have a strong positive correlation (0.55)* -> This is the most crucial finding: higher frequency directly leads to higher spending -> Prioritize strategies to increase purchase frequency.
+  + *Recency (R) and Frequency (F) show a moderate negative correlation (-0.26)* -> Recent buyers tend to be more frequent. This aligns with RFM logic.
+
+- **From Heatmaps of R, F, M Scores:**
+  + *F_score vs M_score (Right Heatmap) is key.* -> This heatmap visually confirms the strong F-M relationship: high concentration of customers with both high F and high M scores (e.g., F=5, M=5). These are your "Champions" – prioritize retention and growth strategies for them.
+  + *R_score vs F_score (Left Heatmap):*
+    ++ Significant clusters of high R, low F customers (e.g., R=5, F=1) indicate "New Customers" or "One-Time Buyers" needing nurturing to become frequent.
+    ++ Clusters of low R, high F customers (e.g., R=1, F=5) represent "Lapsed Loyalists" who need re-engagement.
    
-*Recommendations*
-- Reward Champions (High F/M): Offer exclusive loyalty perks to your most frequent and high-spending customers.
-- Convert New Customers (High R/Low F): Launch immediate follow-up campaigns to drive their second purchase.
-- Win Back Lapsed Loyalists (Low R/High F): Send targeted re-engagement offers to reignite their activity.
+🌟***Recommendations***
+- **Reward Champions (High F/M)**: Offer exclusive loyalty perks to your most frequent and high-spending customers.
+- **Convert New Customers (High R/Low F)**: Launch immediate follow-up campaigns to drive their second purchase.
+- **Win Back Lapsed Loyalists (Low R/High F)**: Send targeted re-engagement offers to reignite their activity.
 
 </details>
 
@@ -352,15 +352,15 @@ It helps assess the **shape of the customer base** - e.g., how active, how loyal
 
 ![image](https://github.com/user-attachments/assets/fd742b3c-62d3-408d-8c83-61022952a79e)
 
--> *Observation*
-- Overall
- + Heavily Skewed Data: All three charts (Recency, Frequency, Monetary) are strongly skewed right, showing most customers are in the lower ranges of buying frequency and total spend.
- + "Long-Tail" Customer Presence: Despite the concentration at lower values, each distribution has a long tail, indicating a smaller but significant group of highly engaged and valuable customers.
- + Conversion Opportunity: The combined view suggests a customer base where initial purchases are common, but transforming these into consistent, high-value engagement is a major challenge and primary growth area.
-- Detail
-  + "New & At-Risk": Customers who recently bought (high Recency) but show low Frequency/Monetary. Focus: Immediate engagement to prevent churn.
-  + "Lapsed Loyalists": Customers with low Recency, but historically high Frequency/Monetary. Focus: Targeted win-back campaigns to reactivate past value.
-  + "High-Value Champions": Customers consistently high in both Frequency and Monetary. Focus: Retention, rewards, and fostering advocacy.
+📍***Observations:***
+- **Overall**
+ + *Heavily Skewed Data*: All three charts (Recency, Frequency, Monetary) are strongly skewed right, showing most customers are in the lower ranges of buying frequency and total spend.
+ + *"Long-Tail" Customer Presence*: Despite the concentration at lower values, each distribution has a long tail, indicating a smaller but significant group of highly engaged and valuable customers.
+ + *Conversion Opportunity*: The combined view suggests a customer base where initial purchases are common, but transforming these into consistent, high-value engagement is a major challenge and primary growth area.
+- **Detail**
+  + *New & At-Risk*: Customers who recently bought (high Recency) but show low Frequency/Monetary. Focus: Immediate engagement to prevent churn.
+  + *Lapsed Loyalists*: Customers with low Recency, but historically high Frequency/Monetary. Focus: Targeted win-back campaigns to reactivate past value.
+  + *High-Value Champions*: Customers consistently high in both Frequency and Monetary. Focus: Retention, rewards, and fostering advocacy.
 
 ***Distributions (for outliers -> high spending)***
 
@@ -377,9 +377,9 @@ It helps assess the **shape of the customer base** - e.g., how active, how loyal
 
 ![image](https://github.com/user-attachments/assets/c238e6d7-22ee-4089-ba8c-73807abe7945)
 
--> *Observation*
-- This chart reveals a heavily right-skewed distribution even among top spenders (>\$10,000). The majority of these high-value customers cluster just above the \$10,000 mark.
-- There's an extreme rarity of "ultra-high" spenders (e.g., above \$50,000-\$75,000). This identifies a very small, elite segment of "Monetary Elites" or "Whales" whose individual contribution to revenue is disproportionately large.
+📍***Observations:***
+- This chart reveals a **heavily right-skewed distribution** even among top spenders (>\$10,000). The majority of these high-value customers cluster just above the \$10,000 mark.
+- There's an extreme rarity of *ultra-high* spenders (e.g., above \$50,000-\$75,000). This identifies a very small, elite segment of "Monetary Elites" or "Whales" whose individual contribution to revenue is disproportionately large.
 
 ***Compare outliers vs total RFM average***
 
@@ -390,15 +390,15 @@ It helps assess the **shape of the customer base** - e.g., how active, how loyal
 | Monetary | 2048.7 | 35097.0 |
 
 
-*Observations*
-- Elite (Champion, Loyalist, ..)  Performance Gap: Our top-tier outliers purchase ~8x more frequently and spend ~17x more per customer than the average, while being ~3x more recently active. This isn't just better; it reveals an entirely different dimension of customer engagement.
-- CLTV Chasm: This extreme disparity underscores a massive Customer Lifetime Value (CLTV) chasm between the bulk of our customers and this elite group. The real challenge is unlocking similar value from the broader base, or at least understanding what makes this small segment so incredibly lucrative.
-- Strategic Focus Imperative: The data screams: these outliers aren't just good, they're a business-defining force. Ignoring their unique behavior and contribution means missing critical insights into maximizing enterprise value.
+📍***Observations:***
+- **Elite (Champion, Loyalist, ..)  Performance Gap**: Our top-tier outliers purchase ~8x more frequently and spend ~17x more per customer than the average, while being ~3x more recently active. This isn't just better; it reveals an entirely different dimension of customer engagement.
+- **CLTV Chasm**: This extreme disparity underscores a massive Customer Lifetime Value (CLTV) chasm between the bulk of our customers and this elite group. The real challenge is unlocking similar value from the broader base, or at least understanding what makes this small segment so incredibly lucrative.
+- **Strategic Focus Imperative**: The data screams: these outliers aren't just good, they're a business-defining force. Ignoring their unique behavior and contribution means missing critical insights into maximizing enterprise value.
 
-***Recommendations***
-- Tailored Elite Programs: Develop exclusive, high-touch programs (e.g., dedicated account managers, early access to products, bespoke offers) for the "Monetary Elites" and "High-Value Champions."
-- Segmented Re-engagement Funnels: Implement specific re-engagement strategies for "New & At-Risk" (e.g., welcome series with immediate value propositions) and "Lapsed Loyalists" (e.g., win-back campaigns highlighting new offerings or personalized incentives).
-- Upskill Broad Base: Analyze the purchasing patterns and product preferences of "High-Value Champions" and "Monetary Elites." Use these insights to create targeted upsell/cross-sell campaigns and educational content for the broader customer base, aiming to migrate more customers towards higher frequency and monetary value.
+🌟***Recommendations***
+- **Tailored Elite Programs**: Develop exclusive, high-touch programs (e.g., dedicated account managers, early access to products, bespoke offers) for the "Monetary Elites" and "High-Value Champions."
+- **Segmented Re-engagement Funnels**: Implement specific re-engagement strategies for "New & At-Risk" (e.g., welcome series with immediate value propositions) and "Lapsed Loyalists" (e.g., win-back campaigns highlighting new offerings or personalized incentives).
+- **Upskill Broad Base**: Analyze the purchasing patterns and product preferences of "High-Value Champions" and "Monetary Elites." Use these insights to create targeted upsell/cross-sell campaigns and educational content for the broader customer base, aiming to migrate more customers towards higher frequency and monetary value.
 </details>
 
 
@@ -429,26 +429,26 @@ It helps assess the **shape of the customer base** - e.g., how active, how loyal
 
 ![image](https://github.com/user-attachments/assets/5c485388-cb36-4d40-8d15-bce0f4bbb422)
 
-*Observations*
+📍***Observations:***
 
-- Champions: Your Revenue Fortress (and Fragility Point)
+- **Champions: Your Revenue Fortress (and Fragility Point)**
   + Champions are absolutely mind-blowing, representing a staggering 54.88% of your total revenue with only 12.31% of your customer base. This isn't just impressive; it means for every dollar you make, over half comes from just over one-tenth of your customers! This segment isn't just your best customers; they are your business.
   + -> This extreme concentration is a superpower and a critical vulnerability. Losing even a few Champions means massive revenue hits. Prioritize hyper-personalized retention; they're not just customers, they're your core asset.
-- Lost Customers: A Bigger Opportunity Than New Acquisition
+- **Lost Customers: A Bigger Opportunity Than New Acquisition**
   + Lost Customers are the largest segment by count (14.29%), still out-earning entire New Customers segment (1.61% vs. 1.35% of revenue).
   + -> Forget chasing all new leads. Your biggest immediate win might be reactivating this massive pool of already-converted customers. A smart win-back strategy here could yield significantly higher ROI than typical acquisition efforts.
-- Hibernating Customers: The Unwoken Giants
+- **Hibernating Customers: The Unwoken Giants**
   + Hibernating Customers are a huge segment (11.32%) and contribute more revenue than "About To Sleep" customers (1.91% vs. 1.82%).
   + -> Don't just focus on preventing future churn. These "sleeping giants" represent a vast, untapped resource. Targeted re-engagement to awaken even a small portion of them could drive substantial, efficient revenue growth.
 
-*Recommendations*
-- Launch a "Champion Circle" Exclusive Program:
+🌟***Recommendations***
+- **Launch a "Champion Circle" Exclusive Program:**
  + Action: Create an invitation-only loyalty tier for your Champions, offering dedicated support, early product access, and direct input into your offerings.
  -> This deepens loyalty, mitigates revenue concentration risk, and secures your most vital customers.
-- Execute a "Welcome Back, Valued Customer" Win-Back:
+- **Execute a "Welcome Back, Valued Customer" Win-Back:**
   + Action: Deploy personalized, multi-channel campaigns to Lost Customers with compelling offers based on their purchase history.
   -> Reactivating past customers is often cheaper and yields higher ROI than new acquisition, tapping into a proven revenue pool.
-- Implement a "Re-Spark Interest" Nurturing Track:
+- **Implement a "Re-Spark Interest" Nurturing Track:**
   + Action: Set up automated, value-driven content series (e.g., tips, new arrivals) for Hibernating Customers, avoiding immediate sales pushes.
   -> This scalable approach gently re-engages a large, dormant segment, converting latent potential into active revenue.
   
@@ -500,18 +500,18 @@ It helps assess the **shape of the customer base** - e.g., how active, how loyal
 
 **1. Based on the insights and findings, we would recommend the Marketing team to consider the following:** 
 
-📌 Key Takeaways:  
+📌 **Key Takeaways:**
 
-✔️ Retention Strategy - Champions & Loyal; At Risk & Cannot Lose Them
+✔️ **Retention Strategy** - Champions & Loyal; At Risk & Cannot Lose Them
 
-✔️ Nurturing Strategy - Promising, Potential Loyalist, New Customers 
+✔️ **Nurturing Strategy** - Promising, Potential Loyalist, New Customers 
 
-✔️ Reactivation Strategy - Hibernating, About to Sleep, Need Attention
+✔️ **Reactivation Strategy** - Hibernating, About to Sleep, Need Attention
 
-✔️ Resource Optimization Strategy - Lost Customers
+✔️ **Resource Optimization Strategy** - Lost Customers
 
 **2. Each team should prioritize each RFM metric**
 
-- Marketing team should prioritize Recency
+- **Marketing team** should prioritize **Recency**
   
-- Sales team should prioritize Frequency
+- **Sales team** should prioritize **Frequency**
