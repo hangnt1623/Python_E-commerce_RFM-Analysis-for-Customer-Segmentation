@@ -221,41 +221,79 @@ In this case, use logarithm is to make highly skewed data distributions more sym
 <details>
   <summary>🧩 <strong>Step 1: Prepare the data</strong></summary>
 
- - Calculate TotalPrice for each transaction by multiplying quantity × unit price.
+- Calculate TotalPrice for each transaction by multiplying quantity × unit price.
+```python
+ecommerce_retail['TotalPrice'] = ecommerce_retail['Quantity'] * ecommerce_retail['UnitPrice']
+```
 - Set a reference date (Dec 31, 2011) to measure recency from.
+```python
+import datetime as dt
+ref_date = dt.datetime(2011, 12, 31)
+```
+
 </details>
 
 
 <details>
   <summary>🧩 <strong>Step 2: Calculate R, F, M values per customer</strong></summary>
-#### 
+ 
 - Recency: Days since the customer’s last purchase (difference between reference date and last purchase date).
 - Frequency: Count of unique purchase invoices (how often the customer bought).
 - Monetary: Total money spent by the customer.
+```python
+rfm = ecommerce_retail.groupby('CustomerID').agg({
+    'InvoiceDate': lambda x: (ref_date - x.max()).days,   # Recency
+    'InvoiceNo': 'nunique',                               # Frequency
+    'TotalPrice': 'sum'                                   # Monetary
+}).reset_index()
+
+rfm.columns = ['CustomerID', 'Recency', 'Frequency', 'Monetary']
+```
 </details>
 
 <details>
   <summary>🧩 <strong>Step 3: Convert R, F, M values to scores (1 to 5)</strong></summary>
+
 - For Recency, lower days mean higher score (5 = most recent buyers).
 - For Frequency and Monetary, higher values get higher scores (5 = most frequent/spending customers).
 
 -> This is done by splitting customers into 5 groups (quintiles) based on each metric.
+```python
+# Recency: low score -> new customer (the newer the better)
+rfm['R_score'] = pd.qcut(rfm['Recency'], 5, labels=[5, 4, 3, 2, 1])
+
+# Frequency & Monetary: high score is good customer
+f_bins = pd.qcut(rfm['Frequency'], q=5, duplicates='drop')
+rfm['F_score'] = f_bins.cat.codes + 1  # encode labels as 1, 2, ...
+
+m_bins = pd.qcut(rfm['Monetary'], q=5, duplicates='drop')
+rfm['M_score'] = m_bins.cat.codes + 1
+```
 </details>
 
 <details>
   <summary>🧩 <strong>Step 4: Combine the scores into a 3-digit RFM Score</strong></summary>
 
  -> Concatenate the R, F, and M scores into a single string, e.g., "545".
+```python
+rfm['RFM Score'] = rfm['R_score'].astype(str) + rfm['F_score'].astype(str) + rfm['M_score'].astype(str)
+rfm.head()
+```
 </details>
 
 <details>
   <summary>🧩 <strong>Step 5: Segment customers by matching their RFM Score to predefined groups</strong></summary>
 
- - Use the mapping table of RFM Score patterns (like "555", "544", etc.) to assign customers into segments such as Champions, Loyal, At Risk, Lost, etc.
+- Use the mapping table of RFM Score patterns (like "555", "544", etc.) to assign customers into segments such as Champions, Loyal, At Risk, Lost, etc.
 - This allows tailoring marketing strategies to each customer group.
+```python
+#Split RFM Score string into list, then explode each line
+segmentation['RFM Score'] = segmentation['RFM Score'].str.split(',')  # Split string into list
+segmentation = segmentation.explode('RFM Score').reset_index(drop=True)  # Convert each RFM Score to a row
+```
 
 <details>
-  <summary>🧩 <strong>Click here to see RFM Segments</strong></summary>
+  <summary>📊 <strong>Click here to see RFM Segments</strong></summary>
 
 | Segment               | RFM Score Patterns |
 |-----------------------|-------------------|
@@ -365,11 +403,12 @@ It helps assess the **shape of the customer base** - e.g., how active, how loyal
 
 
 <details>
-  <summary>🧩 <strong>(3) Customer segment structure</strong></summary>
+  <summary>🧩 <strong>(3) Customers & Revenue Contribution by Customer Segment</strong></summary>
+ 
 ****
 → Analyze the size of each customer group to understand dominant segments and prioritize strategies.
 
-***Total numbers of customers & revenue by segment***
+***Total numbers of customers & revenue by Customer segment***
 
 | Segment | Num_Customers | Total_Revenue | %_Customers | %_Revenue |
 | --- | --- | --- | --- | --- |
